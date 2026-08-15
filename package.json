@@ -1,0 +1,22 @@
+{
+  "name": "kdf-cost-floor",
+  "version": "0.1.0",
+  "description": "Validate password KDF parameters against a stated attacker-cost floor, refusing configurations that are expensive for the defender and cheap for the attacker.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": { "build": "tsc", "prepack": "npm run build", "test": "vitest run" },
+  "keywords": ["kdf", "scrypt", "pbkdf2", "argon2", "password", "security"],
+  "author": "Nick Raddon",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/nradawg/kdf-cost-floor.git" },
+  "engines": { "node": ">=18" },
+  "devDependencies": { "@types/node": "^26.1.2", "typescript": "^5.5.0", "vitest": "^2.0.0" }
+}
