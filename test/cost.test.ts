@@ -360,8 +360,13 @@ describe('scrypt runtime memory', () => {
   });
 
   it('agrees with node:crypto that that configuration throws', () => {
+    // Asserted on the error code rather than the message. Node forwards the
+    // OpenSSL string, and older bundled OpenSSL versions say only "Invalid
+    // scrypt params" where newer ones add "memory limit exceeded", so matching
+    // the text would make this test a statement about the runner's OpenSSL
+    // build instead of about the parameters.
     expect(() => scryptSync('pw', 'salt-value-16byt', 32, { N: 2 ** 15, r: 8, p: 1 })).toThrow(
-      /memory limit exceeded/,
+      expect.objectContaining({ code: 'ERR_CRYPTO_INVALID_SCRYPT_PARAMS' }),
     );
   });
 
